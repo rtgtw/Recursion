@@ -1,49 +1,52 @@
 #include <iostream>
 
-//Fibonacci Recursive Function w/ Memoization (input index, output value at given index)
-//The reason why memoization is important for this function, is because without it
-//The fibonacci recursive function is an excesive recursive function
-//To reduce the amount of function calls that it will make, we can create a global key,
-//Where the function checks the key before making a function call to reduce the amount of function calls
+//Tower of Hanoi 
 
-//Declare the static variable
-static int F[10];
+/*
+TOH(1, A, B, C)
+	Move Disk from A to C using B
 
 
-int fib(int n) {
+TOH(2, A, B, C)
+	//recursively move two disks by calling the n-1 function
 
-	//The first two fibonacci numbers are 0, and 1. Thus, if n is = to either 0 OR 1, return n
-	if (n <= 1) {
+	//We can move 1 disk, by going A > B
+	//then from B > C, we can successfully move 1 disk 
+	TOH(1, A, C, B)
+	
+	Move from A to C 
 
-		//We not only want to return n, but prior to returning n, we want to store the value of
-		//n inside of the array at the n'th positon, and we know the first starting points of the array
-		//are 0 and 1
-		F[n] = n;
-		return n;
-	}
-
-	else {
-
-		//Prior to making any calls, we have to check the array to see if any values have been stored
-		//The array was initialized to -1
-		//for the 3rd to last position, (n-2) , (n-1), (n)
-		//If a value has not been stored, then we want to make the call
-		//And the value that we get from that call, we want to store it into the array at that value
-		if (F[n - 2] == -1) {
-			F[n - 2] = fib(n - 2);
-		}
-		//We want to do the same for the second to last value, (n-2), (n-1), (n)
-		//We know that once all of the values in the array have been stored, there wont be any more calls left
-		if (F[n - 1] == -1) {
-			F[n - 1] = fib(n - 1);
-		}
+	//Recursively put back the disk that was at B > C
+	TOH(1,B , A , C)
 
 
-		F[n] = F[n - 2] + F[n - 1];
-		//Since all of the array values are filled and both if statements are false
-		//We know our array has been filled with both (n-2) and (n-1) so we just  return it
-		return F[n - 2] + F[n - 1];
-	}
+TOH (3, A, B , C)
+	//Same principle 
+	
+	//We know how to move two disks, we move A>B, put another disk from A>C, and but B>C, so we recrusively
+	//Call that function
+	TOH(2, A, C, B)
+
+	Move from A to C
+
+	TOH(2, B, A, C
+
+
+*/
+
+
+
+void TOH(int n, int A, int B, int C) {
+
+	if (n > 0) {
+
+		TOH(n - 1, A, C, B);
+
+		std::cout << "Move from: " << A << " to " << C << '\n';
+
+		TOH(n - 1, B, A, C);
+
+	};
 
 
 };
@@ -51,37 +54,10 @@ int fib(int n) {
 
 
 
-
-
-
-
 int main() {
 
-	//Create a static array for memoization of recursive array
-	//Static / Global variables are in the stack
-	//The static array holds all of the fibonnaci values as well
 
-	// initialize global array F with the value of -1
-	//size of F has the total amount of bytes that the array has, size of int, is the data type of the array
-	//And signifies the bytes of that particular data type, dividing the total amount by the size of data type
-	// gives you the number of elements within the array
-	//For loop iterates through the array, initializing it with the value of -1
-	//-1 is arbitrary which symbolizes that we do not yet have a number for our array key
-
-	for (int i = 0; i < sizeof(F) / sizeof(int); i++) {
-		F[i] = -1;
-
-		std::cout << F[i] << '\n';
-	}
-
-	//Enter an index to receieve the fibonnaci value
-	std::cout << '\n' << fib(8) << '\n' << '\n';
-
-
-	//Print the values of the static array after the fibonnaci function
-	for (int i = 0; i < sizeof(F) / sizeof(int); i++) {
-		std::cout << F[i] << '\n';
-	}
+	TOH(8, 1, 2, 3);
 
 	return 0;
 
