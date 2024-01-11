@@ -1,63 +1,12 @@
 #include <iostream>
 
-//Tower of Hanoi 
 
-/*
-TOH(1, A, B, C)
-	Move Disk from A to C using B
-
-
-TOH(2, A, B, C)
-	//recursively move two disks by calling the n-1 function
-
-	//We can move 1 disk, by going A > B
-	//then from B > C, we can successfully move 1 disk 
-	TOH(1, A, C, B)
-	
-	Move from A to C 
-
-	//Recursively put back the disk that was at B > C
-	TOH(1,B , A , C)
-
-
-TOH (3, A, B , C)
-	//Same principle 
-	
-	//We know how to move two disks, we move A>B, put another disk from A>C, and but B>C, so we recrusively
-	//Call that function
-	TOH(2, A, C, B)
-
-	Move from A to C
-
-	TOH(2, B, A, C
-
-
-*/
-
-
-
-void TOH(int n, int A, int B, int C) {
-
-	if (n > 0) {
-
-		TOH(n - 1, A, C, B);
-
-		std::cout << "Move from: " << A << " to " << C << '\n';
-
-		TOH(n - 1, B, A, C);
-
-	};
-
-
-};
 
 
 
 
 int main() {
 
-
-	TOH(8, 1, 2, 3);
 
 	return 0;
 
@@ -534,6 +483,69 @@ int main() {
 
 
 
+#include <iostream>
+
+//Tower of Hanoi
+
+TOH(1, A, B, C)
+	Move Disk from A to C using B
+
+
+TOH(2, A, B, C)
+	//recursively move two disks by calling the n-1 function
+
+	//We can move 1 disk, by going A > B
+	//then from B > C, we can successfully move 1 disk
+	TOH(1, A, C, B)
+
+	Move from A to C
+
+	//Recursively put back the disk that was at B > C
+	TOH(1,B , A , C)
+
+
+TOH (3, A, B , C)
+	//Same principle
+
+	//We know how to move two disks, we move A>B, put another disk from A>C, and but B>C, so we recrusively
+	//Call that function
+	TOH(2, A, C, B)
+
+	Move from A to C
+
+	TOH(2, B, A, C
+
+
+
+
+
+
+void TOH(int n, int A, int B, int C) {
+
+	if (n > 0) {
+
+		TOH(n - 1, A, C, B);
+
+		std::cout << "Move from: " << A << " to " << C << '\n';
+
+		TOH(n - 1, B, A, C);
+
+	};
+
+
+};
+
+
+
+
+int main() {
+
+
+	TOH(8, 1, 2, 3);
+
+	return 0;
+
+};
 
 
 
